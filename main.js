@@ -9,21 +9,29 @@ $(function () {
 	var timer = 2;
 	var startTime;
 	var endTime;
-	var array_match = [1,2,3,4];
+	var array_botmatch = [1,2,3,4];
+	var mix_toprow = 0;
+	var array_mixbot;
 
 	const homepage = document.getElementById("homepage");
     const gamepage = document.getElementById('gamepage');
     const rulessection = document.getElementById("gamerules");
     const gamesection = document.getElementById('gamescore-section');
+	const img = ['./images/heart.png','./images/moon.png','./images/star.png','./images/triangle.png'];
 
 
 
-	function shuffle(array) {
-		array_match = [1,2,3,4];
-	  	for(let i = array.length - 1; i > 0; i--) {
+	function shuffle() {
+		if (mix_toprow == 1){
+			for(let i = img.length - 1; i > 0; i--) {
+		    	let j = Math.floor(Math.random() * (i + 1));
+		    	[img[i], img[j]] = [img[j], img[i]];
+			}
+		}
+		array_botmatch = [1,2,3,4];
+	  	for(let i = array_botmatch.length - 1; i > 0; i--) {
 	    	let j = Math.floor(Math.random() * (i + 1));
-	    	[array[i], array[j]] = [array[j], array[i]];
-	    	[array_match[i], array_match[j]] = [array_match[j], array_match[i]];
+	    	[array_botmatch[i], array_botmatch[j]] = [array_botmatch[j], array_botmatch[i]];
 	  	}
 	};
 
@@ -35,8 +43,7 @@ $(function () {
 
 	function check_match(){
 		for (var i = 0; i < 4; i++){
-			if (array_match[i] != document.getElementById('gameinput' + (i+1)).value){
-				console.log("no");
+			if (array_botmatch[i] != document.getElementById('gameinput' + (i+1)).value){
 				document.querySelector("#gameinput1").classList.toggle("wobble-hor-bottom");
 				document.querySelector("#gameinput2").classList.toggle("wobble-hor-bottom");
 				document.querySelector("#gameinput3").classList.toggle("wobble-hor-bottom");
@@ -45,7 +52,6 @@ $(function () {
 				return 0;
 			}
 		}
-		console.log("gotit");
 		score++;
 		clear_inputs();
 		new_set();
@@ -53,27 +59,28 @@ $(function () {
 	};
 
 	function new_set(){
-		// fill bottom row
-		var array_bottom = ['./images/heart.png','./images/moon.png','./images/star.png','./images/triangle.png'];
-		shuffle(array_bottom);
+		shuffle();
 		for(var i = 0; i < 4; i++){
-			document.getElementById('img'+ (i+5)).src = array_bottom[i];
+			document.getElementById('img'+ (i+1)).src = img[i];
+			document.getElementById('img'+ (i+5)).src = img[array_botmatch[i] - 1];
 		}
 	};
 
 	function start_game(){
+		if (document.getElementById('checkbox-mix').checked){
+			console.log('checked');
+			mix_toprow = 1;
+		}
+		else {
+			console.log('unchecked');
+			mix_toprow = 0;
+		}
 		timer = document.getElementById("timer").value;
 		if (timer <= 0)
-			timer = 2;
+			timer = 1;
 		getEndTime();
 		initializeClock('clockdiv', endTime);
 		new_set();
-
-		// fill top row
-		var array_top = ['./images/heart.png','./images/moon.png','./images/star.png','./images/triangle.png'];
-		for(var i = 0; i < 4; i++){
-			document.getElementById('img'+ (i+1)).src = array_top[i];
-		}
 
 	    homepage.classList.add("uk-hidden");
 		gamepage.classList.remove("uk-hidden");
