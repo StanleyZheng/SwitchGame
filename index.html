@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background-color: #82D8F6; height: 100%;">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-  <title>TimeTable</title>
-  
-  <!-- UIkit CSS / JS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
+	<title>Switch Game</title>
+	
+	<!-- UIkit CSS / JS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
 
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <!-- BootStrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<!-- BootStrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-  <!-- Handson Table -->
-  <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css">
+	<!-- Handson Table -->
+	<script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css">
 
 
 
@@ -32,75 +32,127 @@
 
 
 
-<body class="uk-height-1-1">
+<body class="uk-height-viewport" style="background-color: #82D8F6; height: 100%;">
+
+	<div id="homepage" class="uk-child-width-1-1" uk-grid>
+		<div class="uk-section uk-margin-auto" >
+							
+			<div class="uk-card uk-card-default uk-card-body uk-width-5-6 uk-align-center">
+				<div class="uk-container uk-text-center">
+					<h1 class="uk-heading-medium">Switch Game</h1>
+				</div>
+
+				<!-- Settings-->
+				<div class="uk-grid uk-child-width-1-2@s uk-text-left uk-margin-auto uk-flex-center" uk-grid>
+					<div class="uk-card uk-card-default uk-card-body">
+						<div class="uk-text-lead">Time Limit</div>
+						<input id="timer" class="uk-input" type="number" placeholder="2" autofocus/>
+						<div class="uk-width-expand uk-padding">
+							<a class="btn btn-primary rounded-0 btn-block" id="start" href="#gameinput1">Start</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Rules -->
+			<div class="uk-width-5-6 uk-align-center">
+				<div id="gamerules" class="uk-grid uk-child-width-expand@s uk-text-left uk-margin-auto" uk-grid>
+					
+					<div class="uk-card uk-card-default">
+						<div class="uk-card-body">
+							<h1 class="uk-text-lead uk-text-bold">Rules</h1>
+							</br>
+							<p class="uk-text-normal">Match the shape on the bottom row to the <b>position</b> of the shape in the top row. </br> </br> Use number keys</p>
+						</div>
+					</div>
+
+					<div class="uk-card-media-right uk-cover-container">
+						<img src="./images/SwitchGame-Example.jpg" alt="" uk-cover>
+						<canvas width="800" height="400"></canvas>
+					</div>
+
+				</div>
 
 
-    
-    <div class="uk-child-width-1-1" uk-grid>
-        <div class="uk-section uk-margin-auto" style="background-color: #82D8F6;">
-            
-            <div class="uk-card uk-card-default uk-card-body uk-width-5-6 uk-align-center">
-                <div class="uk-container uk-text-center">
-                    <h1 class="display-4">Project Management Scheduling Table</h1>
-                </div>
+				<div id="gamescore-section" class="uk-grid uk-child-width-expand@s uk-text-left uk-margin-auto uk-hidden" uk-grid>
+					
+					<div class="uk-card uk-card-default">
+						<div class="uk-card-body">
+							<h4 class="uk-text-lead uk-text-bold">Scores</h4>
+							<p class="uk-text-normal">Past Scores</p>
+						</div>
+					</div>
 
-                <!-- Input Tables -->
-                <div class="uk-grid uk-child-width-expand@s uk-text-center uk-margin-auto" uk-grid>
-                    
-                    <div class="uk-card uk-card-default uk-card-body">
-                        <div id="table1">asdf</div>
-                    </div>
-                    
-                    <div class="uk-card uk-card-default uk-card-body">
-                        <div id="table2">asdf </div>
-                    </div>
+					<div class="uk-carduk-card-default">
+						<div class="uk-card-body">
+							<h4 id="gamescore" class="uk-heading-large uk-text-bold">Score: </h4>
+						</div>
+					</div>
 
-                </div>
-
-                <!-- Buttons -->
-                <div class="uk-container uk-width-1-1">
-                    <div class="uk-flex uk-flex-center" uk-grid>
-                        <div class="uk-width-expand"><a class="btn btn-primary rounded-0 btn-block" id="insertRow" href="#">Add new row</a></div>
-                        <div class="uk-width-expand"><a class="btn btn-primary rounded-0 btn-block" id="submit" href="#">Submit</a></div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Output Tables -->
-            <div class="uk-width-5-6 uk-align-center">
-
-                <div class="uk-grid uk-child-width-expand@s uk-text-center uk-margin-auto" uk-grid>
-                    
-                    <div class="uk-card uk-card-default uk-card-body">
-                        <div id="table1">asdf</div>
-                    </div>
-                    
-                    <div class="uk-card uk-card-default uk-card-body">
-                        <div id="table2">asdf </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-  <!-- local CSS / JS -->
-  <link rel="stylesheet" href="main.css">
-  <script src="main.js"></script>
+	<div id="gamepage" class="uk-child-width-1-1 uk-hidden" uk-grid>
+		<div class="uk-section uk-margin-small" >				
+			
+			<div class="uk-card uk-card-default uk-card-body uk-width-5-6 uk-align-center">
+					
+					<div class="uk-container uk-text-center">
+							<h1 class="uk-heading-large"><div id="clockdiv"></div></h1>
+					</div>
+
+					<!-- Game-->
+					<div class="uk-grid uk-child-width-1-2@s uk-text-left uk-margin-auto uk-flex-center" uk-grid>
+						<div class="uk-card uk-card-default uk-card-body uk-box-shadow-xlarge">
+							<div class="uk-padding-remove uk-flex uk-flex-center">
+								<div><img id="img1" width="100px" height="100px" uk-img></div>
+								<div><img id="img2" width="100px" height="100px" uk-img></div>
+								<div><img id="img3" width="100px" height="100px" uk-img></div>
+								<div><img id="img4" width="100px" height="100px" uk-img></div>
+							</div>
+							<div class="uk-padding uk-flex uk-flex-center">
+								<div><img data-src="./images/box.png" width="400px" height="400px" uk-img></div>
+							</div>
+							<div class="uk-padding-remove uk-flex uk-flex-center">
+								<div><img id="img5" width="100px" height="100px" uk-img></div>
+								<div><img id="img6" width="100px" height="100px" uk-img></div>
+								<div><img id="img7" width="100px" height="100px" uk-img></div>
+								<div><img id="img8" width="100px" height="100px" uk-img></div>
+							</div>
+
+							<div class="uk-padding uk-flex uk-flex-center">
+								<input id="gameinput1" class="gameinputs uk-input uk-form-width-xsmall" type="number" maxlength="1" onfocus="this.value='';"/>
+								<input id="gameinput2" class="gameinputs uk-input uk-form-width-xsmall" type="number" maxlength="1" onfocus="this.value='';"/>
+								<input id="gameinput3" class="gameinputs uk-input uk-form-width-xsmall" type="number" maxlength="1" onfocus="this.value='';"/>
+								<input id="gameinput4" class="gameinputs uk-input uk-form-width-xsmall" type="number" maxlength="1" onfocus="this.value='';"/>
+
+							</div>
+
+
+
+						</div>
+					</div>
+			
+			</div>
+		</div>
+	</div>
+
+	<!-- local CSS / JS -->
+	<link rel="stylesheet" href="main.css">
+	<script src="main.js"></script>
 </body>
 </html>
 
 
-  
+	
 
 
 
 
 
 
-  
+	
 
