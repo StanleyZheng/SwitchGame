@@ -1,8 +1,3 @@
-
-
-
-
-
 $(function () {
 
 	var score = 0;
@@ -14,12 +9,10 @@ $(function () {
 	var array_mixbot;
 
 	const homepage = document.getElementById("homepage");
-    const gamepage = document.getElementById('gamepage');
-    const rulessection = document.getElementById("gamerules");
-    const gamesection = document.getElementById('gamescore-section');
+	const gamepage = document.getElementById('gamepage');
+	const rulessection = document.getElementById("gamerules");
+	const gamesection = document.getElementById('gamescore-section');
 	const img = ['./images/heart.png','./images/moon.png','./images/star.png','./images/triangle.png'];
-
-
 
 	function shuffle() {
 		if (mix_toprow == 1){
@@ -67,6 +60,7 @@ $(function () {
 	};
 
 	function start_game(){
+		score = 0;
 		if (document.getElementById('checkbox-mix').checked){
 			console.log('checked');
 			mix_toprow = 1;
@@ -82,7 +76,7 @@ $(function () {
 		initializeClock('clockdiv', endTime);
 		new_set();
 
-	    homepage.classList.add("uk-hidden");
+		homepage.classList.add("uk-hidden");
 		gamepage.classList.remove("uk-hidden");
 		document.getElementById("gameinput1").focus();
 	}
@@ -96,6 +90,8 @@ $(function () {
 		document.getElementById("start").innerHTML = "Play Again";
 	}
 
+	
+	// Time functions to check time remaining, Clock function to display time remaining
 	function getEndTime(){
 		startTime = new Date();
 		endTime = new Date(startTime.getTime() + timer*60000);
@@ -134,8 +130,7 @@ $(function () {
 	}
 
 
-
-
+	// Keyboard inputs
 	$("#start").on("click", function (event) {
 	    event.preventDefault();
 	    start_game();
@@ -147,7 +142,6 @@ $(function () {
 		}
 		
 	});
-
 
 	$(".gameinputs").keydown(function (event) {
 		event.preventDefault();
@@ -174,11 +168,5 @@ $(function () {
 	        document.getElementById("start").click();
 	    }
 	});
-
-
-
-	
-
-
 
 });
